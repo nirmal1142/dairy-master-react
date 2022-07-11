@@ -1,16 +1,17 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { DataGrid } from '@mui/x-data-grid';
 import { columns } from '../../products/columns';
-import { rows } from '../../products/row';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllDairyMaster } from '../../../store/services/dairyMaster';
 import { clearDairyMasterError } from '../../../store/action/dairyMaster';
-import  DataTableHeader from "../../DataTableHeader/index.js";
+import DataTableHeader from "../../DataTableHeader/index.js";
+import AddProducts from '../../products/AddProducts';
 
 
 export default function ProductPage() {
   const dispatch = useDispatch();
   const { data, loading, error } = useSelector(state => state.dairyMasterReducer);
+  const [openAddProductModal, setOpenAddProductModal] = useState(false);
 
   useEffect(() => {
     dispatch(getAllDairyMaster());
@@ -24,9 +25,17 @@ export default function ProductPage() {
   }, [error, dispatch]);
 
 
+  const handleClickOpen = () => {
+    setOpenAddProductModal(true);
+  };
+
+  const handleClose = () => {
+    setOpenAddProductModal(false);
+  };
+
   return (
     <>
-    <DataTableHeader/>
+      <DataTableHeader handleClickOpen={handleClickOpen} />
       <div style={{ height: 400, width: '100%' }}>
         <DataGrid
           rows={data?.data}
@@ -36,6 +45,7 @@ export default function ProductPage() {
           checkboxSelection
         />
       </div>
+      <AddProducts handleClose={handleClose} handleClickOpen={handleClickOpen} openAddProductModal={openAddProductModal} />
     </>
   );
 }

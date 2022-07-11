@@ -10,6 +10,8 @@ export default function AppRoutes() {
         <Router>
             <Routes>
                 <Route exact path="/login" element={<Login />} />
+
+                {/* Protected Routing */}
                 <Route element={<Layout />} >
                     <Route exact path="/" element={<Dashboard />} />
                     <Route exact path="products" element={<Product />} />
