@@ -30,7 +30,7 @@ export const LoginForm = () => {
         if (authReducer.error && Boolean(authReducer.error)) {
             dispatch(authErrorClear());
         } else if (authReducer.isAuthenticated) {
-            navigate("/dashboard");
+            navigate("/");
         }
     }, [authReducer])
     return (

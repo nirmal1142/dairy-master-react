@@ -2,19 +2,8 @@ import React from 'react'
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import { Item } from './styles';
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 
 export default function DashboardPage() {
-    const authReducer = useSelector(state => state.authReducer);
-    const navigate = useNavigate();
-
-    useEffect(() => {
-        if (!authReducer.isAuthenticated) {
-            navigate('/login');
-        }
-    }, [authReducer])
 
     return (
         <Box sx={{ width: '100%' }}>

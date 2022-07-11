@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
@@ -14,15 +14,17 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import { useNavigate } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 import { AppBar, DrawerHeader, Main } from './styles';
 import CenteredTabs from '../../header/HeaderTab';
 import { SideMenu } from '../../header/SideMenu';
+import { useSelector } from 'react-redux';
 
 const drawerWidth = 240;
 
-export default function Layout({ children }) {
+export default function Layout() {
     const navigate = useNavigate();
+    const authReducer = useSelector(state => state.authReducer);
     const theme = useTheme();
     const [open, setOpen] = useState(false);
 
@@ -38,6 +40,13 @@ export default function Layout({ children }) {
         setOpen(false);
         navigate(menuItem);
     }
+
+    useEffect(() => {
+        if (!authReducer.isAuthenticated) {
+            navigate('/login');
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [authReducer])
 
     return (
         <>
@@ -94,7 +103,7 @@ export default function Layout({ children }) {
                 <Main open={open}>
                     <DrawerHeader />
                     <Divider />
-                    {children}
+                    <Outlet />
                 </Main>
             </Box>
         </>

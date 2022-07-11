@@ -29,7 +29,7 @@ export default function ProductPage() {
     <DataTableHeader/>
       <div style={{ height: 400, width: '100%' }}>
         <DataGrid
-          rows={data.data}
+          rows={data?.data}
           columns={columns}
           pageSize={5}
           rowsPerPageOptions={[5]}

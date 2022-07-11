@@ -4,7 +4,7 @@ import CategoryIcon from '@mui/icons-material/Category';
 export const SideMenu = [
     {
         name: 'Dashboard',
-        path: '/dashboard',
+        path: '/',
         icon: <DashboardIcon />,
         exact: true,
     },
