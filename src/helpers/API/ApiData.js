@@ -18,7 +18,6 @@ export const ApiPostNoAuth = (type, userData) => {
       axios
         .post(BaseURL + type, userData, getHttpOptions({ ...defaultHeaders, isAuth: false }))
         .then((responseJson) => {
-          // console.log("call no auth api");
           resolve(responseJson);
         })
         .catch((error) => {
@@ -33,14 +32,10 @@ export const ApiPostNoAuth = (type, userData) => {
 };
 
 export const ApiPutNoAuth = (type, userData) => {
-  // console.log("In api put without auth", API);
-  // console.log(BaseURL);
-  // debugger
   return new Promise((resolve, reject) => {
     axios
       .put(BaseURL + type, userData, getHttpOptions({ ...defaultHeaders, isAuth: false }))
       .then((responseJson) => {
-        // console.log("call no auth api");
         resolve(responseJson);
       })
       .catch((error) => {
@@ -134,24 +129,19 @@ export const ApiGet = (type) => {
 
 export const ApiPost = (type, userData, AdditionalHeader) => {
   return new Promise((resolve, reject) => {
-    // console.log("dataBody", userData);
     axios
       .post(BaseURL + type, userData, {
         ...getHttpOptions(),
         ...AdditionalHeader,
       })
       .then((responseJson) => {
-        // console.log("responseJson",responseJson);
         resolve(responseJson);
       })
       .catch((error) => {
-        // console.log("error", error);
 
         if (error && error.hasOwnProperty("response") && error.response && error.response.hasOwnProperty("data") && error.response.data && error.response.data.hasOwnProperty("error") && error.response.data.error) {
-          // console.log("reject");
           reject(error.response.data.error);
         } else {
-          // console.log("reject", error);
 
           reject(error);
         }

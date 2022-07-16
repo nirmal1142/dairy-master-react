@@ -7,23 +7,23 @@ import { clearDairyMasterError } from '../../../store/action/dairyMaster';
 import DataTableHeader from "../../DataTableHeader/index.js";
 import AddProducts from '../../products/AddProducts';
 
-
 export default function ProductPage() {
   const dispatch = useDispatch();
-  const { data, loading, error } = useSelector(state => state.dairyMasterReducer);
+  // const { data, loading, error } = useSelector(state => state.dairyMasterReducer);
   const [openAddProductModal, setOpenAddProductModal] = useState(false);
+  const dairyMasterDetails = useSelector(state => state?.dairyMasterReducer);
+
+  useEffect(() => {
+    if (dairyMasterDetails?.error && Boolean(dairyMasterDetails?.error)) {
+      dispatch(clearDairyMasterError());
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [dairyMasterDetails?.error]);
 
   useEffect(() => {
     dispatch(getAllDairyMaster());
-  }, [dispatch]);
-
-
-  useEffect(() => {
-    if (error) {
-      dispatch(clearDairyMasterError());
-    }
-  }, [error, dispatch]);
-
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const handleClickOpen = () => {
     setOpenAddProductModal(true);
@@ -38,7 +38,7 @@ export default function ProductPage() {
       <DataTableHeader handleClickOpen={handleClickOpen} />
       <div style={{ height: 400, width: '100%' }}>
         <DataGrid
-          rows={data?.data}
+          rows={dairyMasterDetails?.data?.data}
           columns={columns}
           pageSize={5}
           rowsPerPageOptions={[5]}

@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 
 export const login = (data) => {
     return async (dispatch) => {
-        dispatch(loginFailure());
+        // dispatch(loginFailure());
         await ApiPostNoAuth("user/login/", data)
             .then((response) => {
                 dispatch(loginSuccess({...response.data?.user_data}));
