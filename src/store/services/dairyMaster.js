@@ -1,5 +1,5 @@
 import { toast } from "react-toastify";
-import { ApiGet, ApiPost } from "../../helpers/API/ApiData";
+import { ApiDelete, ApiGet, ApiPost } from "../../helpers/API/ApiData";
 import {
     getAllDairyMasterError,
     getAllDairyMasterRequest,
@@ -8,6 +8,10 @@ import {
     addDairyMasterRequest,
     addDairyMasterSuccess,
     clearAddDairyMasterError,
+    clearDeleteDairyMasterError,
+    deleteDairyMasterRequest,
+    deleteDairyMasterSuccess,
+    deleteDairyMasterError,
 } from "../action";
 
 export const getAllDairyMaster = () => {
@@ -15,7 +19,8 @@ export const getAllDairyMaster = () => {
         dispatch(getAllDairyMasterRequest());
         await ApiGet("dairy-masteraster/get-all")
             .then((response) => {
-                dispatch(getAllDairyMasterSuccess(response.data));
+                let reversedData = response.data.data.reverse();
+                dispatch(getAllDairyMasterSuccess(reversedData));
             })
             .catch((error) => {
                 dispatch(getAllDairyMasterError(error));
@@ -36,5 +41,24 @@ export const addDairyMasterDetails = (data) => {
                 dispatch(addDairyMasterError(error));
                 toast.error(error.response?.data?.errors[0]);
             })
+    }
+}
+
+
+export const deleteDairyMaster = (id) => {
+    return async (dispatch) => {
+        dispatch(deleteDairyMasterRequest());
+        await ApiDelete(`dairy-masteraster/daily-milk-details-update?id=${id}`)
+            .then((response) => {
+                dispatch(deleteDairyMasterSuccess());
+                toast.success("Dairy Master Deleted Successfully");
+            }).catch((error) => {
+                toast.error(error.response?.data?.errors[0]);
+                dispatch(deleteDairyMasterError());
+            }).finally(() => {
+                dispatch(clearDeleteDairyMasterError());
+                dispatch(getAllDairyMaster());
+            }
+            )
     }
 }

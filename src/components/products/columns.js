@@ -16,7 +16,7 @@ export const columns = [
         renderCell: (rowData) => {
             return (
                 <>
-                    <div style={{marginLeft: "15px"}}>
+                    <div style={{ marginLeft: "15px" }}>
                         <InfoIcon />
                     </div>
 
@@ -24,13 +24,4 @@ export const columns = [
             );
         }
     }
-    // {
-    //     field: 'fullName',
-    //     headerName: 'Full name',
-    //     description: 'This column has a value getter and is not sortable.',
-    //     sortable: false,
-    //     width: 160,
-    //     valueGetter: (params) =>
-    //         `${params.row.firstName || ''} ${params.row.lastName || ''}`,
-    // },
 ];

@@ -60,3 +60,38 @@ export const clearAddDairyMasterError = () => {
         type: dairyMasterConstants.CLEAR_ADD_DAIRY_MASTER_ERROR,
     };
 }
+
+
+//  ----------  DELETE DAIRY MASTER  ----------
+
+
+export const deleteDairyMasterRequest = (id) => {
+    return {
+        type: dairyMasterConstants.DELETE_DAIRY_MASTER_REQUEST,
+        payload: id,
+    };
+}
+
+
+export const deleteDairyMasterSuccess = (id) => {
+    return {
+        type: dairyMasterConstants.DELETE_DAIRY_MASTER_SUCCESS,
+        payload: id,
+    };
+}
+
+
+export const deleteDairyMasterError = (error) => {
+    return {
+        type: dairyMasterConstants.DELETE_DAIRY_MASTER_ERROR,
+        payload: error,
+    };
+}
+
+
+export const clearDeleteDairyMasterError = () => {
+    return {
+        type: dairyMasterConstants.CLEAR_DELETE_DAIRY_MASTER_ERROR,
+    };
+}
+

@@ -1,11 +1,13 @@
 import { combineReducers } from 'redux';
-import { authReducer,dairyMasterReducer ,dairyMasterAddReducer} from './reducers';
+import { authReducer,dairyMasterReducer ,dairyMasterAddReducer , dairyMasterDeleteReducer} from './reducers';
 
 
 const appReducer = combineReducers({
     authReducer,
     dairyMasterReducer,
     dairyMasterAddReducer,
+    dairyMasterDeleteReducer
+
 });
 
 const initialState = appReducer({}, {});

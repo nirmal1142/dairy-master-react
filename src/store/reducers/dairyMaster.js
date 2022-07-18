@@ -86,3 +86,50 @@ export const dairyMasterAddReducer = (state = initialStateAdd, action) => {
             return state;
     }
 }
+
+
+const initialStateDelete = {
+    data: {},
+    error: "",
+    loading: false,
+    status: "",
+}
+
+
+export const dairyMasterDeleteReducer = (state = initialStateDelete, action) => {
+    switch (action.type) {
+        case dairyMasterConstants.DELETE_DAIRY_MASTER_REQUEST:
+            return {
+                ...state,
+                loading: true,
+                status: "",
+                error: "",
+            };
+        case dairyMasterConstants.DELETE_DAIRY_MASTER_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                status: "success",
+                data: action?.payload,
+                error: "",
+            };
+        case dairyMasterConstants.DELETE_DAIRY_MASTER_ERROR:
+            return {
+                ...state,
+                loading: false,
+                status: "failure",
+                data: "",
+                error: action.payload,
+            };
+        case dairyMasterConstants.CLEAR_DELETE_DAIRY_MASTER_ERROR:
+            return {
+                ...state,
+                error: "",
+                data: "",
+                loading: false,
+                status: "",
+            };
+        default:
+            return state;
+    }
+}

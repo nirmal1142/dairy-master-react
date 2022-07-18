@@ -32,7 +32,7 @@ function ProductForm(props) {
         } else if (dairyMasterAddReducer?.status === "failure") {
             dispatch(clearAddDairyMasterError())
         }
-    } , [dairyMasterAddReducer?.status])
+    }, [dairyMasterAddReducer?.status])
 
     const handleSubmit = (event) => {
         dispatch(addDairyMasterDetails(inputValueForAdd))

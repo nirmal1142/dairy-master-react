@@ -9,13 +9,14 @@ import Typography from '@mui/material/Typography';
 import CloseIcon from '@mui/icons-material/Close';
 import Slide from '@mui/material/Slide';
 import ProductForm from './ProductForm';
+import ShowOneDetails from './ShowOneDetails';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />;
 });
 
 export default function AddProducts(props) {
-    const { handleClose, openAddProductModal } = props;
+    const { handleClose, openAddProductModal, productId } = props;
 
     return (
         <div>
@@ -45,7 +46,12 @@ export default function AddProducts(props) {
                 </AppBar>
                 <List>
                     {/*Add  Product Form */}
-                    <ProductForm  handleClose={handleClose}/>
+                    {!productId && <ProductForm handleClose={handleClose} />}
+
+                    {/* Show One Details */}
+
+                    {productId && <ShowOneDetails />}
+
                 </List>
             </Dialog>
         </div>
