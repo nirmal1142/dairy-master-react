@@ -27,11 +27,10 @@ export default function ProductPage() {
   }, [error]);
 
 
-  useMemo(() => {
+  useEffect(() => {
     dispatch(getAllDairyMaster());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
 
   const handleClickOpen = () => {
     setOpenAddProductModal(true);
@@ -122,8 +121,8 @@ export default function ProductPage() {
         handleConfirmDelete={handleDelete}
         title="Delete"
         message="Are you sure you want to delete this product?"
-        
-         />
+
+      />
 
     </>
   );

@@ -14,4 +14,9 @@ export const SideMenu = [
         icon: <CategoryIcon />,
         exact: true,
     },
+    {
+        name: 'Rate',
+        path: '/rate',
+        icon: <CategoryIcon />,
+    }
 ]

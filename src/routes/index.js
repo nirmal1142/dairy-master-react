@@ -4,6 +4,7 @@ import Layout from '../components/pages/header';
 import Dashboard from './dashboard';
 import Login from './login';
 import Product from './product';
+import { RatePage } from './rate';
 
 export default function AppRoutes() {
 
@@ -16,6 +17,8 @@ export default function AppRoutes() {
                 <Route element={<Layout />} >
                     <Route exact path="/" element={<Dashboard />} />
                     <Route exact path="/products" element={<Product />} />
+                    <Route exact path="/rate" element={<RatePage />} />
+
                 </Route>
             </Routes>
         </Router >

@@ -17,7 +17,7 @@ import {
 export const getAllDairyMaster = () => {
     return async (dispatch) => {
         dispatch(getAllDairyMasterRequest());
-        await ApiGet("dairy-masteraster/get-all")
+        await ApiGet("dairy-masteraster/dairy-master-update")
             .then((response) => {
                 let reversedData = response.data.data.reverse();
                 dispatch(getAllDairyMasterSuccess(reversedData));
@@ -32,7 +32,7 @@ export const getAllDairyMaster = () => {
 export const addDairyMasterDetails = (data) => {
     return async (dispatch) => {
         dispatch(addDairyMasterRequest());
-        await ApiPost("dairy-masteraster/daily-milk-details-add/", data)
+        await ApiPost("dairy-masteraster/dairy-master-update", data)
             .then((response) => {
                 dispatch(addDairyMasterSuccess(response.data));
                 toast.success("Dairy Master Added Successfully");
@@ -44,11 +44,10 @@ export const addDairyMasterDetails = (data) => {
     }
 }
 
-
 export const deleteDairyMaster = (id) => {
     return async (dispatch) => {
         dispatch(deleteDairyMasterRequest());
-        await ApiDelete(`dairy-masteraster/daily-milk-details-update?id=${id}`)
+        await ApiDelete(`dairy-masteraster/dairy-master-update?id=${id}`)
             .then((response) => {
                 dispatch(deleteDairyMasterSuccess());
                 toast.success("Dairy Master Deleted Successfully");
